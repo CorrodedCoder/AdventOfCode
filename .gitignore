@@ -1,4 +1,5 @@
 
 *.pyc
-aoc2022/01/input.txt
-aoc2022/02/input.txt
+input.txt
+.vscode
+*.json
