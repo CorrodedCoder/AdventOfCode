@@ -1,18 +1,18 @@
 import sys
 
-if sys.version_info.major == 2:
-	# Compatibility tweak for Python 2, although we get very little of the benefits and many drawbacks
-	MyEnumClass = object
+if sys.hexversion >= 0x03040000:
+	from enum import IntEnum as MyIntEnum
 else:
-	from enum import IntEnum
-	MyEnumClass = IntEnum
+	# Compatibility tweak for Python 2, although we get very little of the benefits and many drawbacks
+	MyIntEnum = object
 
-class Shapes(MyEnumClass):
+
+class Shapes(MyIntEnum):
 	Rock = 1
 	Paper = 2
 	Scissors = 3
 
-class Results(MyEnumClass):
+class Results(MyIntEnum):
 	Win = 6
 	Draw = 3
 	Lose = 0
