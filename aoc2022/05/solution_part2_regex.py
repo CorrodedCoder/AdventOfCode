@@ -1,4 +1,7 @@
+import re
 import itertools
+
+_regex_match = re.compile(r'move (\d+) from (\d+) to (\d+)\n')
 
 def solve(iterable):
     # Read each row of the crates until we get a newline
@@ -6,7 +9,7 @@ def solve(iterable):
     # Generate the stacks from the rows, removing any spaces from the top
     stacks = [list(itertools.dropwhile(lambda x: x == ' ', stack)) for stack in zip(*crate_rows)]
     for move_str in iterable:
-        _, count_str, _, source_str, _, destination_str = move_str.split(' ')
+        count_str, source_str, destination_str = re.match(_regex_match, move_str).groups()
         # source and destination need a -1 for zero based indexing
         count, source, destination = int(count_str), int(source_str) - 1, int(destination_str) - 1
         # Build new stack from "count" top of source + current stack
